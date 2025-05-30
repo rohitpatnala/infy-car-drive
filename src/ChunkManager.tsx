@@ -4,6 +4,7 @@ import { Mesh } from "three";
 import Terrain from "./Terrain";
 import Road from "./Road";
 import Environment from "./Environment";
+import RoadMarkings from "./RoadMarkings";
 
 const TILE_SIZE = 50;
 const RADIUS = 1; // 3×3 grid
@@ -55,6 +56,7 @@ export default function ChunkManager({
           <group key={key} position={[offsetX, 0, offsetZ]}>
             <Terrain offsetX={offsetX} offsetZ={offsetZ} />
             <Road offsetX={offsetX} offsetZ={offsetZ} />
+            <RoadMarkings offsetX={offsetX} offsetZ={offsetZ} carRef={carRef} />
             <Environment offsetX={offsetX} offsetZ={offsetZ} />
           </group>
         );
