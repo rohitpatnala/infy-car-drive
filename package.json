@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^10.0.8",
     "@react-three/fiber": "^9.1.2",
+    "cannon-es": "^0.20.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "simplex-noise": "^4.0.3",

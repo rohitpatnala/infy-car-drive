@@ -1,8 +1,11 @@
+// src/App.tsx
 import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/cannon";
 import { useRef } from "react";
 import { Mesh } from "three";
+import Ground from "./Ground";
 import ChunkManager from "./ChunkManager";
-import Car from "./Car";
+import CarPhysics from "./CarPhysics";
 import CameraRig from "./CameraRig";
 
 export default function App() {
@@ -10,11 +13,11 @@ export default function App() {
 
   return (
     <Canvas
+      shadows
       style={{ width: "100%", height: "100%" }}
       camera={{ position: [0, 5, 10], fov: 60 }}
-      shadows
     >
-      {/* lights */}
+      {/* Lights */}
       <ambientLight intensity={0.5} />
       <directionalLight
         position={[5, 10, 7]}
@@ -24,11 +27,19 @@ export default function App() {
         shadow-mapSize-height={1024}
       />
 
-      {/* infinite terrain + road */}
-      <ChunkManager carRef={carRef} />
+      {/* Physics world */}
+      <Physics gravity={[0, -9.81, 0]}>
+        {/* Drivable ground plane */}
+        <Ground />
 
-      {/* car and follow camera */}
-      <Car ref={carRef} />
+        {/* Infinite terrain + road */}
+        <ChunkManager carRef={carRef} />
+
+        {/* Physics-driven car */}
+        <CarPhysics ref={carRef} />
+      </Physics>
+
+      {/* Follow camera */}
       <CameraRig targetRef={carRef} />
     </Canvas>
   );
