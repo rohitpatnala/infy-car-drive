@@ -32,7 +32,7 @@ const CarPhysics = forwardRef<Mesh, {}>((_, ref) => {
       window.removeEventListener("keydown", down);
       window.removeEventListener("keyup", up);
     };
-  }, [keys]);
+  }, []);
 
   // Create a dynamic box body
   const [boxRef, api] = useBox<Mesh>(
